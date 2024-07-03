@@ -22,7 +22,7 @@ const REPO_COUNT_QUERY = (searchQuery: string) => `
   }
 `;
 
-const GITHUB_API_URL = process.env.GITHUB_API_URL;
+const GITHUB_API_URL = process.env.GITHUB_API_URL as string;
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 const REPOS_QUERY = (

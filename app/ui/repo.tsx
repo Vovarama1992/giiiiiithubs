@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import Link from 'next/link';
 import { Repo as RepoType } from '../lib/definitions';
 import styles from '../page.module.scss';

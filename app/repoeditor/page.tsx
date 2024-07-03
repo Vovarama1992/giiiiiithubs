@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 'use client';
 
 import styles from '../page.module.scss';
@@ -35,7 +36,7 @@ function DetailedRepoCard() {
     description: params.get('description') as string,
   };
 
-  const [repo, setRepo] = useState<Repo>(initialObj);
+  const [repo] = useState<Repo>(initialObj);
 
   return (
     <div className={styles.card}>

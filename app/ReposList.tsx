@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 'use server';
 import styles from './page.module.scss';
 import Repo from './ui/repo';

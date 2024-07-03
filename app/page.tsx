@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import MailingList from './ReposList';
 import Search from './Search';
 import Pagination from './Pagination';
@@ -22,10 +23,7 @@ export default async function Page({
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
   const totalPages = await fetchCommon(query);
-  const item = searchParams?.item || '';
-  const date = searchParams?.date || '';
-  const num = searchParams?.num || '';
-  const showGifts = searchParams?.showGifts || false;
+
   const username = searchParams?.username || '';
   return (
     <>
