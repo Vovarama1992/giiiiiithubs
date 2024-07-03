@@ -6,9 +6,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html>
       <body className={styles.mainBody}>
         <div className={styles.container}>
-          <div className={styles.generalBlock}>
-            {children}
-            </div></div>
+          <div className={styles.generalBlock}>{children}</div>
+        </div>
       </body>
     </html>
   );

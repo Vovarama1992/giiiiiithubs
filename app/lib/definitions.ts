@@ -3,8 +3,7 @@ export type ReposListProps = {
   query: string;
   currentPage: number;
   username: string;
-}
-
+};
 
 export type Repo = {
   id: string;
@@ -22,18 +21,12 @@ export type Repo = {
   description: string;
 };
 
-
-
-
-
-
 export type RootLayoutProps = {
   children: ReactNode;
-}
+};
 export type InputProps = {
-  
   index: number;
   value: string;
   onInput: onInputChange;
-}
+};
 export type onInputChange = (e: ChangeEvent<HTMLInputElement>) => void;

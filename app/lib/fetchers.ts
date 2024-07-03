@@ -25,7 +25,11 @@ const REPO_COUNT_QUERY = (searchQuery: string) => `
 const GITHUB_API_URL = process.env.GITHUB_API_URL;
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
-const REPOS_QUERY = (searchQuery: string, first: number, after: string | null) => `
+const REPOS_QUERY = (
+  searchQuery: string,
+  first: number,
+  after: string | null,
+) => `
   query {
     search(query: "${searchQuery}", type: REPOSITORY, first: ${first}, after: ${after ? `"${after}"` : null}) {
       repositoryCount
@@ -63,7 +67,11 @@ const REPOS_QUERY = (searchQuery: string, first: number, after: string | null) =
 `;
 
 // Fetch repositories from GitHub with offset
-export async function fetchRepositories(searchQuery: string, first: number, offset: number): Promise<Repo[]> {
+export async function fetchRepositories(
+  searchQuery: string,
+  first: number,
+  offset: number,
+): Promise<Repo[]> {
   let after: string | null = null;
 
   if (offset > 0) {
@@ -72,13 +80,15 @@ export async function fetchRepositories(searchQuery: string, first: number, offs
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
       },
       body: JSON.stringify({ query: initialQuery }),
     });
     const initialData = await initialResponse.json();
     if (initialData.errors) {
-      throw new Error(initialData.errors.map((error: any) => error.message).join(', '));
+      throw new Error(
+        initialData.errors.map((error: any) => error.message).join(', '),
+      );
     }
 
     after = initialData.data.search.pageInfo.endCursor;
@@ -89,7 +99,7 @@ export async function fetchRepositories(searchQuery: string, first: number, offs
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${GITHUB_TOKEN}`,
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
     },
     body: JSON.stringify({ query }),
   });
@@ -123,7 +133,7 @@ export async function fetchCommon(searchQuery: string): Promise<number> {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${GITHUB_TOKEN}`,
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
     },
     body: JSON.stringify({ query }),
   });
@@ -133,12 +143,16 @@ export async function fetchCommon(searchQuery: string): Promise<number> {
   if (data.errors) {
     throw new Error(data.errors.map((error: any) => error.message).join(', '));
   }
-  console.log("data: " + data.data.search.repositoryCount)
+  console.log('data: ' + data.data.search.repositoryCount);
   return data.data.search.repositoryCount;
 }
 
 // Function to fetch and log fields
-export async function fetchAndLogFields(searchQuery: string, first: number, offset: number) {
+export async function fetchAndLogFields(
+  searchQuery: string,
+  first: number,
+  offset: number,
+) {
   let after: string | null = null;
 
   if (offset > 0) {
@@ -147,13 +161,15 @@ export async function fetchAndLogFields(searchQuery: string, first: number, offs
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
       },
       body: JSON.stringify({ query: initialQuery }),
     });
     const initialData = await initialResponse.json();
     if (initialData.errors) {
-      throw new Error(initialData.errors.map((error: any) => error.message).join(', '));
+      throw new Error(
+        initialData.errors.map((error: any) => error.message).join(', '),
+      );
     }
 
     after = initialData.data.search.pageInfo.endCursor;
@@ -164,7 +180,7 @@ export async function fetchAndLogFields(searchQuery: string, first: number, offs
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${GITHUB_TOKEN}`,
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
     },
     body: JSON.stringify({ query }),
   });

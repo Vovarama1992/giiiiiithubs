@@ -1,5 +1,5 @@
 'use server';
-import styles from "./page.module.scss";
+import styles from './page.module.scss';
 import Repo from './ui/repo';
 import { fetchRepositories } from './lib/fetchers';
 import { Repo as RepoType, ReposListProps } from './lib/definitions';

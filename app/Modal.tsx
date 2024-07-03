@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from "./page.module.scss";
+import styles from './page.module.scss';
 
 export default function Modal() {
   const [isOpen, setIsOpen] = useState(false);
